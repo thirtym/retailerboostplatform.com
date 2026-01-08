@@ -48,22 +48,47 @@
       .Navigation_ctaButton__jQlAz {
         animation: glowPulse 2.5s ease-in-out infinite;
       }
+      /* Navigation links hover */
+      .nav-links a:hover {
+        color: #247CFF !important;
+      }
+      /* Mobile menu styles */
+      .mobile-menu.open {
+        display: flex !important;
+      }
       /* Ensure navigation CTA is visible on mobile */
       @media (max-width: 768px) {
-        .Navigation_ctaButton__jQlAz {
-          display: block !important;
-          visibility: visible !important;
-          opacity: 1 !important;
+        .nav-links {
+          display: none !important;
         }
         .nav-cta-group {
-          flex-direction: column;
-          gap: 0.5rem !important;
-        }
-        .nav-cta-secondary {
           display: none !important;
+        }
+        .mobile-menu-btn {
+          display: block !important;
         }
         .Hero_headline__ASVgO {
           font-size: 2rem !important;
+        }
+      }
+      @media (min-width: 769px) {
+        .mobile-menu-btn {
+          display: none !important;
+        }
+        .mobile-menu {
+          display: none !important;
+        }
+      }
+      /* Scenarios grid responsive */
+      @media (max-width: 768px) {
+        #scenarios > div > div:last-child {
+          grid-template-columns: 1fr !important;
+        }
+      }
+      /* Pricing grid responsive */
+      @media (max-width: 768px) {
+        .pricing-grid {
+          grid-template-columns: 1fr !important;
         }
       }
       /* FAQ expand/collapse */
@@ -119,9 +144,28 @@
     <nav class="Navigation_nav__PiYhp">
       <div class="Navigation_container__PSkJX">
         <a class="Navigation_logo__rl5XE" href="/"><img alt="RetailerBoost" width="180" height="40" decoding="async" data-nimg="1" style="color:transparent" src="/assets/images/RetailerBoost-Logo-Blue-White.png"/></a>
+        <div class="nav-links" style="display:flex;gap:2rem;align-items:center;">
+          <a href="#scenarios" style="color:#e5e5e5;text-decoration:none;font-size:0.95rem;font-weight:500;transition:color .2s ease;">Scenarios</a>
+          <a href="#how-it-works" style="color:#e5e5e5;text-decoration:none;font-size:0.95rem;font-weight:500;transition:color .2s ease;">How it Works</a>
+          <a href="#pricing" style="color:#e5e5e5;text-decoration:none;font-size:0.95rem;font-weight:500;transition:color .2s ease;">Pricing</a>
+          <a href="#faq" style="color:#e5e5e5;text-decoration:none;font-size:0.95rem;font-weight:500;transition:color .2s ease;">FAQ</a>
+        </div>
         <div class="nav-cta-group" style="display:flex;gap:1rem;align-items:center;">
           <a href="https://app.retailerboost.com?utm_source=retailerboostplatform-com&amp;utm_medium=website&amp;utm_campaign=nav" target="_blank" rel="noopener noreferrer" class="nav-cta-secondary" style="display:inline-block;padding:0.6rem 1.25rem;background:transparent;color:#fff;text-decoration:none;font-weight:600;font-size:0.95rem;border:2px solid #247CFF;border-radius:8px;transition:all .3s ease;">Get Started</a>
           <a href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/sturrock/intro?hide_event_type_details=1&hide_gdpr_banner=1&primary_color=247CFF'});return false;" class="Navigation_ctaButton__jQlAz">Book a Call</a>
+        </div>
+        <!-- Mobile Menu Button -->
+        <button class="mobile-menu-btn" onclick="document.getElementById('mobile-menu').classList.toggle('open')" style="display:none;background:none;border:none;color:#fff;font-size:1.5rem;cursor:pointer;padding:0.5rem;">☰</button>
+      </div>
+      <!-- Mobile Menu -->
+      <div id="mobile-menu" class="mobile-menu" style="display:none;flex-direction:column;padding:1rem 2rem;background:#0B1314;border-top:1px solid rgba(36,124,255,0.2);">
+        <a href="#scenarios" onclick="document.getElementById('mobile-menu').classList.remove('open')" style="color:#e5e5e5;text-decoration:none;font-size:1rem;padding:0.75rem 0;border-bottom:1px solid rgba(255,255,255,0.1);">Scenarios</a>
+        <a href="#how-it-works" onclick="document.getElementById('mobile-menu').classList.remove('open')" style="color:#e5e5e5;text-decoration:none;font-size:1rem;padding:0.75rem 0;border-bottom:1px solid rgba(255,255,255,0.1);">How it Works</a>
+        <a href="#pricing" onclick="document.getElementById('mobile-menu').classList.remove('open')" style="color:#e5e5e5;text-decoration:none;font-size:1rem;padding:0.75rem 0;border-bottom:1px solid rgba(255,255,255,0.1);">Pricing</a>
+        <a href="#faq" onclick="document.getElementById('mobile-menu').classList.remove('open')" style="color:#e5e5e5;text-decoration:none;font-size:1rem;padding:0.75rem 0;border-bottom:1px solid rgba(255,255,255,0.1);">FAQ</a>
+        <div style="display:flex;flex-direction:column;gap:0.75rem;padding-top:1rem;">
+          <a href="https://app.retailerboost.com?utm_source=retailerboostplatform-com&amp;utm_medium=website&amp;utm_campaign=nav-mobile" target="_blank" rel="noopener noreferrer" style="display:block;padding:0.75rem 1.5rem;background:transparent;color:#fff;text-decoration:none;font-weight:600;font-size:0.95rem;border:2px solid #247CFF;border-radius:8px;text-align:center;">Get Started</a>
+          <a href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/sturrock/intro?hide_event_type_details=1&hide_gdpr_banner=1&primary_color=247CFF'});return false;" style="display:block;padding:0.75rem 1.5rem;background:linear-gradient(135deg, #247CFF, #1A64CC);color:#fff;text-decoration:none;font-weight:600;font-size:0.95rem;border-radius:8px;text-align:center;">Book a Call</a>
         </div>
       </div>
     </nav>
@@ -173,6 +217,48 @@
           </div>
         </div>
       </div>
+
+      <!-- Scenarios Section -->
+      <section id="scenarios" style="padding:5rem 2rem;">
+        <div style="max-width:1100px;margin:0 auto;">
+          <h2 style="font-size:2.5rem;font-weight:700;color:#fff;margin-bottom:0.75rem;text-align:center;">How Brands Use This</h2>
+          <p style="text-align:center;font-size:1.15rem;color:#aaa;margin-bottom:3.5rem;">Common scenarios where this makes sense</p>
+          
+          <div style="display:grid;grid-template-columns:repeat(2, 1fr);gap:1.5rem;">
+            <!-- Card 1: Budget Limits -->
+            <div style="background:rgba(36,124,255,0.05);border:1px solid rgba(36,124,255,0.2);border-radius:16px;padding:2rem;">
+              <div style="font-size:2rem;margin-bottom:1rem;">💰</div>
+              <h3 style="color:#247CFF;font-size:1.1rem;font-weight:700;margin-bottom:0.5rem;">Budget Limits</h3>
+              <h4 style="color:#fff;font-size:1.25rem;font-weight:600;margin-bottom:1rem;">You Can't Increase Spend Right Now</h4>
+              <p style="color:#e5e5e5;line-height:1.7;font-size:0.95rem;">You've reached the limit of what you're comfortable investing. Instead of increasing ad budget, you unlock additional Shopping revenue on a pay-on-results basis. No upfront spend. No risk to existing campaigns. Growth without committing more capital.</p>
+            </div>
+            
+            <!-- Card 2: Untested or Excess Inventory -->
+            <div style="background:rgba(36,124,255,0.05);border:1px solid rgba(36,124,255,0.2);border-radius:16px;padding:2rem;">
+              <div style="font-size:2rem;margin-bottom:1rem;">📦</div>
+              <h3 style="color:#247CFF;font-size:1.1rem;font-weight:700;margin-bottom:0.5rem;">Untested or Excess Inventory</h3>
+              <h4 style="color:#fff;font-size:1.25rem;font-weight:600;margin-bottom:1rem;">Products You Don't Want to Gamble On</h4>
+              <p style="color:#e5e5e5;line-height:1.7;font-size:0.95rem;">Long-tail SKUs, seasonal overstock, new launches with no performance history. Rather than risking your own budget, you can put this inventory into a results-only model. We fund the testing. You only pay when it sells.</p>
+            </div>
+            
+            <!-- Card 3: Reducing Risk -->
+            <div style="background:rgba(36,124,255,0.05);border:1px solid rgba(36,124,255,0.2);border-radius:16px;padding:2rem;">
+              <div style="font-size:2rem;margin-bottom:1rem;">🛡️</div>
+              <h3 style="color:#247CFF;font-size:1.1rem;font-weight:700;margin-bottom:0.5rem;">Reducing Risk</h3>
+              <h4 style="color:#fff;font-size:1.25rem;font-weight:600;margin-bottom:1rem;">Performance Without Exposure</h4>
+              <p style="color:#e5e5e5;line-height:1.7;font-size:0.95rem;">If a channel or product feels uncertain, this lets you test it without downside. If it works, you gain incremental revenue. If it doesn't, there's no wasted spend and no disruption to what's already working.</p>
+            </div>
+            
+            <!-- Card 4: Incremental Revenue -->
+            <div style="background:rgba(36,124,255,0.05);border:1px solid rgba(36,124,255,0.2);border-radius:16px;padding:2rem;">
+              <div style="font-size:2rem;margin-bottom:1rem;">📈</div>
+              <h3 style="color:#247CFF;font-size:1.1rem;font-weight:700;margin-bottom:0.5rem;">Incremental Revenue</h3>
+              <h4 style="color:#fff;font-size:1.25rem;font-weight:600;margin-bottom:1rem;">Extra Sales, Not a Replacement</h4>
+              <p style="color:#e5e5e5;line-height:1.7;font-size:0.95rem;">This sits alongside your existing Shopping activity. It's not a rebuild, not a migration, and not a replacement. It's an additional revenue stream designed to capture demand you're currently leaving on the table.</p>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <!-- Works Alongside Any Setup -->
       <section style="padding:4rem 2rem;">
@@ -424,13 +510,143 @@
                 </div>
               </div>
               
-              <div class="faq-item" style="border-bottom:none;">
+              <div class="faq-item">
                 <button class="faq-question" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open');">
                   <h4>Will your ads raise my CPCs?</h4>
                   <span class="faq-icon">+</span>
                 </button>
                 <div class="faq-answer">
                   <p>No. We only target products that aren't performing in your campaigns or that you aren't actively working on. We're not competing for clicks on your successful products - we're generating sales from your buried inventory that Google's algorithm is ignoring. This is additive reach, not competitive bidding.</p>
+                </div>
+              </div>
+              
+              <div class="faq-item">
+                <button class="faq-question" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open');">
+                  <h4>What is RetailerBoost?</h4>
+                  <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                  <p>RetailerBoost is a performance-based Google Shopping Ads service for US merchants. We fund and manage Shopping campaigns for your products, and you only pay a commission on sales we generate.</p>
+                </div>
+              </div>
+              
+              <div class="faq-item">
+                <button class="faq-question" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open');">
+                  <h4>Who is RetailerBoost for?</h4>
+                  <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                  <p>Online retailers selling physical products who have an active, compliant Google Merchant Center account. We support Shopify (via a RetailerBoost pixel) and non-Shopify platforms (via a universal tracking script).</p>
+                </div>
+              </div>
+              
+              <div class="faq-item">
+                <button class="faq-question" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open');">
+                  <h4>What do I need to get started?</h4>
+                  <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                  <p>You'll need: a live store on a custom domain (no staging URLs or platform subdomains), an approved Google Merchant Center account in good standing with an active product feed, and RetailerBoost tracking installed. Your store also needs standard policies (shipping, returns, contact info) that meet Google requirements.</p>
+                </div>
+              </div>
+              
+              <div class="faq-item">
+                <button class="faq-question" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open');">
+                  <h4>Do you offer product feed setup or management?</h4>
+                  <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                  <p>Not currently. You'll need to have an existing, compliant Merchant Center account and active product feed.</p>
+                </div>
+              </div>
+              
+              <div class="faq-item">
+                <button class="faq-question" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open');">
+                  <h4>Do you support non-US stores?</h4>
+                  <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                  <p>RetailerBoost is designed to run US Google Shopping campaigns. If you're outside the US but your Merchant Center is set up with USD pricing, English feeds, and your store ships to the USA, we can run ads to US customers. If your feed/currency is non-USD or non-English, performance typically drops significantly.</p>
+                </div>
+              </div>
+              
+              <div class="faq-item">
+                <button class="faq-question" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open');">
+                  <h4>What products are not allowed?</h4>
+                  <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                  <p>We can only run ads for products that comply with Google Shopping policies. Prohibited categories include things like weapons, tobacco, illegal drugs, adult products, and some regulated medical items. Your Merchant Center must already be compliant before we can run ads.</p>
+                </div>
+              </div>
+              
+              <div class="faq-item">
+                <button class="faq-question" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open');">
+                  <h4>Do you advertise on TikTok/Meta/Pinterest or other social platforms?</h4>
+                  <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                  <p>No. RetailerBoost focuses exclusively on Google Shopping Ads.</p>
+                </div>
+              </div>
+              
+              <div class="faq-item">
+                <button class="faq-question" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open');">
+                  <h4>Do you run Google Search Ads or Display Ads?</h4>
+                  <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                  <p>No. We run Google Shopping campaigns only.</p>
+                </div>
+              </div>
+              
+              <div class="faq-item">
+                <button class="faq-question" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open');">
+                  <h4>What happens if your ad spend exceeds the commission?</h4>
+                  <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                  <p>That's our risk, not yours. If we spend more on ads than we earn in commission, we absorb the loss. You never pay more than the agreed commission on RetailerBoost-attributed sales.</p>
+                </div>
+              </div>
+              
+              <div class="faq-item">
+                <button class="faq-question" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open');">
+                  <h4>Do you charge any setup fee, retainer, or monthly minimum?</h4>
+                  <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                  <p>No. There's no retainer, setup fee, or monthly minimum. You only pay commission when we generate sales.</p>
+                </div>
+              </div>
+              
+              <div class="faq-item">
+                <button class="faq-question" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open');">
+                  <h4>What is commission calculated on?</h4>
+                  <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                  <p>Commission is calculated on the order subtotal, excluding tax, shipping, and discounts.</p>
+                </div>
+              </div>
+              
+              <div class="faq-item">
+                <button class="faq-question" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open');">
+                  <h4>How do I pay?</h4>
+                  <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                  <p>Billing is handled via Stripe, charged monthly, based on commission generated from RetailerBoost-attributed orders.</p>
+                </div>
+              </div>
+              
+              <div class="faq-item" style="border-bottom:none;">
+                <button class="faq-question" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open');">
+                  <h4>How does tracking and attribution work?</h4>
+                  <span class="faq-icon">+</span>
+                </button>
+                <div class="faq-answer">
+                  <p>RetailerBoost uses click IDs and conversion tracking to attribute sales. We use a 30-day attribution window and last non-direct click logic: if a customer clicks our ad and buys within 30 days, we can attribute the sale to RetailerBoost, unless the customer clicked another paid ad (like your own) after ours, in which case that later paid click gets the credit.</p>
                 </div>
               </div>
             </div>
@@ -604,6 +820,115 @@
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Pricing Section -->
+      <section id="pricing" style="padding:5rem 2rem;">
+        <div style="max-width:1000px;margin:0 auto;">
+          <h2 style="font-size:2.5rem;font-weight:700;color:#fff;margin-bottom:0.75rem;text-align:center;">Simple, Transparent Pricing</h2>
+          <p style="text-align:center;font-size:1.15rem;color:#aaa;margin-bottom:3.5rem;">Pay only for the orders we generate. No upfront fees, no hidden costs.</p>
+          
+          <div style="display:grid;grid-template-columns:repeat(2, 1fr);gap:2rem;" class="pricing-grid">
+            <!-- Self-Serve Column -->
+            <div style="background:rgba(36,124,255,0.05);border:1px solid rgba(36,124,255,0.2);border-radius:20px;padding:2.5rem;display:flex;flex-direction:column;">
+              <h3 style="color:#fff;font-size:1.5rem;font-weight:700;margin-bottom:0.5rem;">Self-Serve</h3>
+              <p style="color:#aaa;font-size:0.95rem;margin-bottom:2rem;">Perfect for growing retailers ready to scale</p>
+              
+              <div style="margin-bottom:2rem;">
+                <span style="color:#aaa;font-size:0.9rem;">Starts at</span>
+                <div style="display:flex;align-items:baseline;gap:0.25rem;">
+                  <span style="color:#247CFF;font-size:3.5rem;font-weight:800;">12%</span>
+                </div>
+                <span style="color:#aaa;font-size:0.9rem;">commission on orders we generate</span>
+              </div>
+              
+              <div style="flex:1;margin-bottom:2rem;">
+                <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem;">
+                  <span style="color:#33D0C4;font-size:1.1rem;">✓</span>
+                  <span style="color:#e5e5e5;font-size:0.95rem;">We use our own ad spend</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem;">
+                  <span style="color:#33D0C4;font-size:1.1rem;">✓</span>
+                  <span style="color:#e5e5e5;font-size:0.95rem;">No upfront fees or retainers</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem;">
+                  <span style="color:#33D0C4;font-size:1.1rem;">✓</span>
+                  <span style="color:#e5e5e5;font-size:0.95rem;">Risk-free, no sales, no charge</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem;">
+                  <span style="color:#33D0C4;font-size:1.1rem;">✓</span>
+                  <span style="color:#e5e5e5;font-size:0.95rem;">Real-time performance dashboard</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem;">
+                  <span style="color:#33D0C4;font-size:1.1rem;">✓</span>
+                  <span style="color:#e5e5e5;font-size:0.95rem;">Attribution tracking</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem;">
+                  <span style="color:#33D0C4;font-size:1.1rem;">✓</span>
+                  <span style="color:#e5e5e5;font-size:0.95rem;">Campaign optimization</span>
+                </div>
+              </div>
+              
+              <div style="background:rgba(36,124,255,0.1);border-radius:8px;padding:1rem;text-align:center;margin-bottom:1.5rem;">
+                <span style="color:#247CFF;font-weight:700;">Locked-in 833.33% ROI</span>
+              </div>
+              
+              <a href="https://app.retailerboost.com?utm_source=retailerboostplatform-com&amp;utm_medium=website&amp;utm_campaign=pricing-self-serve" target="_blank" rel="noopener noreferrer" style="display:flex;align-items:center;justify-content:center;gap:0.5rem;padding:1rem 2rem;background:linear-gradient(135deg, #247CFF, #1A64CC);color:#fff;text-decoration:none;font-size:1rem;font-weight:700;border-radius:8px;transition:all .3s ease;">
+                Get Started <span>→</span>
+              </a>
+            </div>
+            
+            <!-- Enterprise Column -->
+            <div style="background:rgba(36,124,255,0.05);border:2px solid #247CFF;border-radius:20px;padding:2.5rem;display:flex;flex-direction:column;position:relative;">
+              <div style="position:absolute;top:-12px;right:24px;background:#247CFF;color:#fff;font-size:0.8rem;font-weight:700;padding:0.35rem 1rem;border-radius:20px;">Most Flexible</div>
+              
+              <h3 style="color:#fff;font-size:1.5rem;font-weight:700;margin-bottom:0.5rem;">Enterprise</h3>
+              <p style="color:#aaa;font-size:0.95rem;margin-bottom:2rem;">For businesses with unique requirements</p>
+              
+              <div style="margin-bottom:2rem;">
+                <div style="display:flex;align-items:baseline;gap:0.25rem;">
+                  <span style="color:#247CFF;font-size:3.5rem;font-weight:800;">Custom</span>
+                </div>
+                <span style="color:#aaa;font-size:0.9rem;">Tailored commission rate</span>
+              </div>
+              
+              <div style="flex:1;margin-bottom:2rem;">
+                <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem;">
+                  <span style="color:#33D0C4;font-size:1.1rem;">✓</span>
+                  <span style="color:#e5e5e5;font-size:0.95rem;">Everything in Self-Serve</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem;">
+                  <span style="color:#33D0C4;font-size:1.1rem;">✓</span>
+                  <span style="color:#e5e5e5;font-size:0.95rem;">Dedicated account manager</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem;">
+                  <span style="color:#33D0C4;font-size:1.1rem;">✓</span>
+                  <span style="color:#e5e5e5;font-size:0.95rem;">Custom commission rate</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem;">
+                  <span style="color:#33D0C4;font-size:1.1rem;">✓</span>
+                  <span style="color:#e5e5e5;font-size:0.95rem;">Promote specific products</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem;">
+                  <span style="color:#33D0C4;font-size:1.1rem;">✓</span>
+                  <span style="color:#e5e5e5;font-size:0.95rem;">Priority support</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:0.75rem;margin-bottom:1rem;">
+                  <span style="color:#33D0C4;font-size:1.1rem;">✓</span>
+                  <span style="color:#e5e5e5;font-size:0.95rem;">Advanced reporting & insights</span>
+                </div>
+              </div>
+              
+              <div style="background:rgba(36,124,255,0.1);border-radius:8px;padding:1rem;text-align:center;margin-bottom:1.5rem;">
+                <span style="color:#247CFF;font-weight:700;">Custom performance targets</span>
+              </div>
+              
+              <a href="" onclick="Calendly.initPopupWidget({url: 'https://calendly.com/sturrock/intro?hide_event_type_details=1&hide_gdpr_banner=1&primary_color=247CFF'});return false;" style="display:flex;align-items:center;justify-content:center;gap:0.5rem;padding:1rem 2rem;background:linear-gradient(135deg, #247CFF, #1A64CC);color:#fff;text-decoration:none;font-size:1rem;font-weight:700;border-radius:8px;transition:all .3s ease;cursor:pointer;">
+                Book a Call <span>→</span>
+              </a>
             </div>
           </div>
         </div>
