@@ -14,6 +14,58 @@
     <!-- Calendly widget -->
     <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
     <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+    <!-- UTM Parameter Passthrough -->
+    <script>
+      (function() {
+        // Get UTM params from current URL
+        var urlParams = new URLSearchParams(window.location.search);
+        
+        // Default UTM values (fallbacks)
+        var defaults = {
+          utm_source: 'retailerboostplatform.com',
+          utm_medium: 'outbound',
+          utm_campaign: 'email'
+        };
+        
+        // Capture incoming UTMs or use defaults
+        var utmParams = {
+          utm_source: urlParams.get('utm_source') || defaults.utm_source,
+          utm_medium: urlParams.get('utm_medium') || defaults.utm_medium,
+          utm_campaign: urlParams.get('utm_campaign') || defaults.utm_campaign,
+          utm_term: urlParams.get('utm_term') || null,
+          utm_content: urlParams.get('utm_content') || null
+        };
+        
+        // Store for later use
+        window.capturedUtmParams = utmParams;
+        
+        // Update all signup links on DOM ready
+        document.addEventListener('DOMContentLoaded', function() {
+          var signupLinks = document.querySelectorAll('a[href*="app.retailerboost.com/signup"]');
+          
+          signupLinks.forEach(function(link) {
+            var url = new URL(link.href);
+            var existingContent = url.searchParams.get('utm_content');
+            
+            // Build new params
+            url.searchParams.set('utm_source', utmParams.utm_source);
+            url.searchParams.set('utm_medium', utmParams.utm_medium);
+            url.searchParams.set('utm_campaign', utmParams.utm_campaign);
+            
+            // Keep existing utm_content as fallback, or use captured, or keep original
+            if (utmParams.utm_content) {
+              url.searchParams.set('utm_content', utmParams.utm_content + '_' + existingContent);
+            }
+            // If utm_term was passed, add it
+            if (utmParams.utm_term) {
+              url.searchParams.set('utm_term', utmParams.utm_term);
+            }
+            
+            link.href = url.toString();
+          });
+        });
+      })();
+    </script>
     <title>RetailerBoost | Incremental Sales | Pay Only for Results</title>
     <meta name="description" content="Get incremental orders on Google Ads and pay only for orders generated. CPA-based Google Ads management for USA merchants. We setup, manage, and fund your campaigns."/>
     <meta name="robots" content="noindex, nofollow, nocache"/>
