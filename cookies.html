@@ -141,6 +141,43 @@
       </div>
       <p style="margin:0;font-size:0.9rem;color:#aaa;">© 2025 RetailerBoost. All rights reserved.</p>
     </footer>
+    
+    <!-- RetailerBoost Signup Attribution Tracking -->
+    <!-- NOT FOR AD TRACKING - This tracks signup attribution only -->
+    <script>
+    (function() {
+      'use strict';
+      
+      var params = new URLSearchParams(window.location.search);
+      var utmParams = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
+      var hasUTM = utmParams.some(function(p) { return params.has(p); });
+      var referrer = document.referrer || '';
+      
+      if (!hasUTM && !referrer) { return; }
+      
+      var trackUrl = 'https://app.retailerboost.com/signup-attribution?';
+      var trackParams = [];
+      
+      utmParams.forEach(function(p) {
+        var value = params.get(p);
+        if (value) { trackParams.push(p + '=' + encodeURIComponent(value)); }
+      });
+      
+      if (referrer) { trackParams.push('referrer=' + encodeURIComponent(referrer)); }
+      trackParams.push('captured_on=' + encodeURIComponent(window.location.hostname));
+      
+      trackUrl += trackParams.join('&');
+      
+      var iframe = document.createElement('iframe');
+      iframe.src = trackUrl;
+      iframe.style.cssText = 'position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;border:none;';
+      iframe.setAttribute('aria-hidden', 'true');
+      iframe.setAttribute('tabindex', '-1');
+      
+      if (document.body) { document.body.appendChild(iframe); }
+      else { document.addEventListener('DOMContentLoaded', function() { document.body.appendChild(iframe); }); }
+    })();
+    </script>
   </body>
 </html>
 
