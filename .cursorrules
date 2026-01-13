@@ -1,0 +1,179 @@
+# RetailerBoost Landing Page - Cursor Rules
+
+## Project Overview
+
+This is a static HTML landing page for RetailerBoost outbound marketing campaigns. The site is deployed via GitHub Pages and consists of static HTML, CSS, and vanilla JavaScript.
+
+## Language & Spelling
+
+- **Use USA English spellings** (e.g., "color" not "colour", "center" not "centre", "organization" not "organisation")
+- Common examples:
+  - favor, favorite (not favour, favourite)
+  - analyze (not analyse)
+  - customize (not customise)
+  - optimize (not optimise)
+  - fulfill (not fulfil)
+  - canceled (not cancelled)
+
+## Code Style
+
+### HTML
+
+- Use semantic HTML5 elements where appropriate
+- Keep inline styles to a minimum - prefer CSS classes
+- Use double quotes for attributes
+- Include alt text on all images
+- Use proper indentation (2 spaces)
+- Add HTML comments to mark major sections: `<!-- Section Name -->`
+
+### CSS
+
+- Use the existing color scheme:
+  - Primary Blue: `#247CFF`
+  - Secondary Blue: `#1A64CC`
+  - Teal (checkmarks/accents): `#33D0C4`
+  - Background: `#0B1314`
+  - Text Primary: `#fff`
+  - Text Secondary: `#e5e5e5`
+  - Text Muted: `#aaa`
+- Prefer CSS classes over inline styles for reusable components
+- Use existing CSS classes from `_next/static/css/` files where available
+- Mobile-first responsive design with breakpoints at 768px and 880px
+
+### JavaScript
+
+- Use vanilla JavaScript (no frameworks)
+- Use `'use strict';` in all scripts
+- Prefer `var` for broader browser compatibility in inline scripts
+- Use descriptive function and variable names
+- Add comments for complex logic
+- Keep scripts at the bottom of the body or use DOMContentLoaded
+
+## Content Guidelines
+
+### Emojis
+
+- **Limit emoji usage** - only use where they add clear value
+- Acceptable uses: Section headers with icons (e.g., scenarios cards), testimonial hearts
+- Avoid: Body text, CTAs, navigation
+- Never use multiple emojis in sequence
+
+### Copy Style
+
+- Keep sentences concise and scannable
+- Use active voice
+- Focus on benefits, not features
+- Avoid jargon - write for merchants, not marketers
+- No em dashes (use hyphens or rewrite)
+
+## URLs & Links
+
+### Get Started CTAs
+
+All "Get Started" buttons should link to:
+```
+https://app.retailerboost.com/signup?utm_source=...&utm_medium=...&utm_campaign=...&utm_content=...
+```
+
+UTM parameters are dynamically updated by the UTM passthrough script. Default values:
+- `utm_source`: retailerboostplatform.com
+- `utm_medium`: outbound
+- `utm_campaign`: email
+- `utm_content`: [location identifier]
+
+### Book a Call CTAs
+
+Use Calendly popup:
+```javascript
+Calendly.initPopupWidget({url: 'https://calendly.com/sturrock/intro?hide_event_type_details=1&hide_gdpr_banner=1&primary_color=247CFF'});return false;
+```
+
+## Component Patterns
+
+### FAQ Item
+```html
+<div class="faq-item">
+  <button class="faq-question" onclick="this.classList.toggle('open');this.nextElementSibling.classList.toggle('open');">
+    <h4>Question text here?</h4>
+    <span class="faq-icon">+</span>
+  </button>
+  <div class="faq-answer">
+    <p>Answer text here.</p>
+  </div>
+</div>
+```
+
+### Card Component
+```html
+<div style="background:rgba(36,124,255,0.05);border:1px solid rgba(36,124,255,0.2);border-radius:16px;padding:2rem;">
+  <h3 style="color:#247CFF;">Title</h3>
+  <p style="color:#e5e5e5;">Description</p>
+</div>
+```
+
+### Primary CTA Button
+```html
+<a href="..." style="display:inline-block;padding:1rem 2.5rem;background:linear-gradient(135deg, #247CFF, #1A64CC);color:#fff;text-decoration:none;font-weight:700;border-radius:8px;">
+  Button Text
+</a>
+```
+
+### Secondary/Ghost CTA Button
+```html
+<a href="..." style="display:inline-block;padding:1rem 2.5rem;background:transparent;color:#fff;text-decoration:none;font-weight:700;border-radius:8px;border:2px solid #247CFF;">
+  Button Text
+</a>
+```
+
+## File Structure
+
+```
+/
+├── index.html          # Main landing page
+├── 404.html            # Error page
+├── terms.html          # Terms & Conditions
+├── privacy.html        # Privacy Policy
+├── cookies.html        # Cookie Policy
+├── README.md           # Documentation
+├── CNAME               # GitHub Pages domain
+├── robots.txt          # Search engine directives
+├── assets/
+│   └── images/         # All images
+└── _next/static/
+    └── css/            # Compiled CSS
+```
+
+## Required Elements on All Pages
+
+1. **Google Tag Manager** - in `<head>` and after `<body>`
+2. **RB2B Script** - in `<head>`
+3. **Signup Attribution Tracking** - before `</body>`
+4. **Footer with policy links** - Terms, Privacy, Cookies
+5. **Consistent navigation** - Logo, section links, CTAs
+
+## Testing Checklist
+
+Before committing changes:
+- [ ] Check mobile responsiveness (especially nav at 880px breakpoint)
+- [ ] Verify all links work (especially signup URLs with UTM params)
+- [ ] Test Calendly popup functionality
+- [ ] Verify FAQ accordions expand/collapse
+- [ ] Check color contrast for accessibility
+- [ ] Validate HTML (no unclosed tags)
+- [ ] Test in multiple browsers
+
+## Performance
+
+- Preload critical images (logo)
+- Use lazy loading for below-fold images
+- Keep inline JavaScript minimal
+- Avoid blocking resources in `<head>`
+
+## Do Not
+
+- Do NOT modify files in `_next/static/chunks/` (legacy Next.js build artifacts)
+- Do NOT add React/Next.js hydration - this is a static site
+- Do NOT commit .DS_Store files
+- Do NOT use external dependencies (CDNs) without approval
+- Do NOT remove tracking scripts without discussion
+- Do NOT change the CNAME file
