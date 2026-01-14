@@ -4,13 +4,14 @@ Static landing page for RetailerBoost outbound campaigns.
 
 ## UTM Parameter Passthrough
 
-The landing page automatically captures and passes through UTM parameters to all signup CTAs.
+The landing page automatically captures and passes through UTM parameters to all CTAs (both signup links and Calendly bookings).
 
 ### How It Works
 
 1. When a visitor arrives at the page with UTM parameters (e.g., from an email campaign), the JavaScript captures them
 2. All "Get Started" links pointing to `app.retailerboost.com/signup` are automatically updated with those UTM params
-3. If no UTM params are present in the URL, defaults are used
+3. All "Book a Call" buttons pass UTM params to Calendly via the `utm` object in `Calendly.initPopupWidget()`
+4. If no UTM params are present in the URL, defaults are used
 
 ### Default UTM Values
 
