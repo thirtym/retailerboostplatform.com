@@ -59,11 +59,9 @@
       font-weight: 600;
     }
     
-    .calendly-inline-widget {
+    #calendly-embed {
       min-width: 320px;
       min-height: 700px;
-      border-radius: 12px;
-      overflow: hidden;
     }
     
     .footer {
@@ -106,7 +104,7 @@
   
   <main class="main">
     <h1 class="heading">Book a Call</h1>
-    <div id="calendly-embed"></div>
+    <div id="calendly-embed" class="calendly-inline-widget" data-resize="true" style="min-width:320px;height:700px;"></div>
   </main>
   
   <footer class="footer">
@@ -118,10 +116,7 @@
     <p>© 2025 RetailerBoost. All rights reserved.</p>
   </footer>
   
-  <!-- Calendly Widget JS (load synchronously to ensure it's ready) -->
-  <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript"></script>
-  
-  <!-- Initialize Calendly with UTM passthrough -->
+  <!-- Build Calendly URL with UTMs BEFORE loading widget.js -->
   <script>
     (function() {
       // Get UTM params from URL
@@ -139,25 +134,28 @@
       var utmMedium = urlParams.get('utm_medium') || defaults.utm_medium;
       var utmCampaign = urlParams.get('utm_campaign') || defaults.utm_campaign;
       var utmContent = urlParams.get('utm_content') || 'book-a-call-page';
-      var utmTerm = urlParams.get('utm_term') || undefined;
+      var utmTerm = urlParams.get('utm_term') || '';
       
-      // Build Calendly URL with styling params
-      var calendlyUrl = 'https://calendly.com/sturrock/intro?hide_event_type_details=1&hide_gdpr_banner=1&background_color=0b1314&text_color=ffffff&primary_color=247CFF';
+      // Build Calendly URL with styling params AND UTMs
+      var calendlyUrl = 'https://calendly.com/sturrock/intro?' +
+        'hide_event_type_details=1&hide_gdpr_banner=1&background_color=0b1314&text_color=ffffff&primary_color=247CFF' +
+        '&utm_source=' + encodeURIComponent(utmSource) +
+        '&utm_medium=' + encodeURIComponent(utmMedium) +
+        '&utm_campaign=' + encodeURIComponent(utmCampaign) +
+        '&utm_content=' + encodeURIComponent(utmContent);
       
-      // Initialize Calendly inline widget
-      Calendly.initInlineWidget({
-        url: calendlyUrl,
-        parentElement: document.getElementById('calendly-embed'),
-        utm: {
-          utmSource: utmSource,
-          utmMedium: utmMedium,
-          utmCampaign: utmCampaign,
-          utmContent: utmContent,
-          utmTerm: utmTerm
-        }
-      });
+      if (utmTerm) {
+        calendlyUrl += '&utm_term=' + encodeURIComponent(utmTerm);
+      }
+      
+      // Set data-url attribute BEFORE Calendly script loads
+      var embed = document.getElementById('calendly-embed');
+      embed.setAttribute('data-url', calendlyUrl);
     })();
   </script>
+  
+  <!-- Calendly Widget JS - will auto-detect .calendly-inline-widget with data-url -->
+  <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript"></script>
   
   <!-- RetailerBoost Signup Attribution Tracking -->
   <!-- NOT FOR AD TRACKING - This tracks signup attribution only -->
