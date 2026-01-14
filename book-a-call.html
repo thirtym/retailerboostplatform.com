@@ -11,9 +11,8 @@
   <link rel="icon" href="/favicon.ico">
   <link rel="preload" as="image" href="/assets/images/RetailerBoost-Logo-Blue-White.png">
   
-  <!-- Calendly -->
+  <!-- Calendly CSS -->
   <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
-  <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
   
   <title>Book a Call | RetailerBoost</title>
   <meta name="description" content="Schedule a call with RetailerBoost to learn how we can help grow your sales on Google Ads.">
@@ -60,9 +59,9 @@
       font-weight: 600;
     }
     
-    #calendly-embed {
+    .calendly-inline-widget {
       min-width: 320px;
-      height: 700px;
+      min-height: 700px;
       border-radius: 12px;
       overflow: hidden;
     }
@@ -119,7 +118,10 @@
     <p>© 2025 RetailerBoost. All rights reserved.</p>
   </footer>
   
-  <!-- Calendly initialization with UTM passthrough -->
+  <!-- Calendly Widget JS (load synchronously to ensure it's ready) -->
+  <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript"></script>
+  
+  <!-- Initialize Calendly with UTM passthrough -->
   <script>
     (function() {
       // Get UTM params from URL
@@ -139,36 +141,21 @@
       var utmContent = urlParams.get('utm_content') || 'book-a-call-page';
       var utmTerm = urlParams.get('utm_term') || undefined;
       
-      function initCalendly() {
-        Calendly.initInlineWidget({
-          url: 'https://calendly.com/sturrock/intro?hide_event_type_details=1&hide_gdpr_banner=1&background_color=0b1314&text_color=ffffff&primary_color=247CFF',
-          parentElement: document.getElementById('calendly-embed'),
-          resize: true,
-          utm: {
-            utmSource: utmSource,
-            utmMedium: utmMedium,
-            utmCampaign: utmCampaign,
-            utmContent: utmContent,
-            utmTerm: utmTerm
-          }
-        });
-      }
+      // Build Calendly URL with styling params
+      var calendlyUrl = 'https://calendly.com/sturrock/intro?hide_event_type_details=1&hide_gdpr_banner=1&background_color=0b1314&text_color=ffffff&primary_color=247CFF';
       
-      // Wait for both DOM and Calendly script to be ready
-      function tryInit() {
-        if (typeof Calendly !== 'undefined' && document.getElementById('calendly-embed')) {
-          initCalendly();
-        } else {
-          // Retry in 100ms
-          setTimeout(tryInit, 100);
+      // Initialize Calendly inline widget
+      Calendly.initInlineWidget({
+        url: calendlyUrl,
+        parentElement: document.getElementById('calendly-embed'),
+        utm: {
+          utmSource: utmSource,
+          utmMedium: utmMedium,
+          utmCampaign: utmCampaign,
+          utmContent: utmContent,
+          utmTerm: utmTerm
         }
-      }
-      
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', tryInit);
-      } else {
-        tryInit();
-      }
+      });
     })();
   </script>
   
@@ -216,14 +203,7 @@
       iframe.style.cssText = 'position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;border:none;';
       iframe.setAttribute('aria-hidden', 'true');
       iframe.setAttribute('tabindex', '-1');
-      
-      if (document.body) {
-        document.body.appendChild(iframe);
-      } else {
-        document.addEventListener('DOMContentLoaded', function() {
-          document.body.appendChild(iframe);
-        });
-      }
+      document.body.appendChild(iframe);
     })();
   </script>
 </body>
