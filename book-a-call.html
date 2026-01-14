@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-WPR55HV5');</script>
+  <!-- End Google Tag Manager -->
+  <!-- RB2B -->
+  <script>!function(key){if(window.reb2b)return;window.reb2b={loaded:true};var s=document.createElement("script");s.async=true;s.src="https://ddwl4m2hdecbv.cloudfront.net/b/"+key+"/"+key+".js.gz";document.getElementsByTagName("script")[0].parentNode.insertBefore(s,document.getElementsByTagName("script")[0]);}("QO92DHLLLGN7");</script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/favicon.ico">
+  <link rel="preload" as="image" href="/assets/images/RetailerBoost-Logo-Blue-White.png">
+  
+  <!-- Calendly -->
+  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+  <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
+  
+  <title>Book a Call | RetailerBoost</title>
+  <meta name="description" content="Schedule a call with RetailerBoost to learn how we can help grow your sales on Google Ads.">
+  <meta name="robots" content="noindex, nofollow">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background-color: #0B1314;
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .header {
+      padding: 1.5rem 2rem;
+      text-align: center;
+    }
+    
+    .logo {
+      height: 40px;
+      width: auto;
+    }
+    
+    .main {
+      flex: 1;
+      padding: 0 1rem 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    
+    .heading {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+    
+    #calendly-embed {
+      min-width: 320px;
+      height: 700px;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    
+    .footer {
+      padding: 1.5rem 2rem;
+      text-align: center;
+      color: #aaa;
+      font-size: 0.875rem;
+      border-top: 1px solid rgba(36, 124, 255, 0.2);
+    }
+    
+    .footer-links {
+      margin-bottom: 0.5rem;
+    }
+    
+    .footer a {
+      color: #aaa;
+      text-decoration: none;
+      margin: 0 0.75rem;
+    }
+    
+    .footer a:hover {
+      color: #fff;
+    }
+    
+    .footer p {
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WPR55HV5" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  
+  <header class="header">
+    <a href="/">
+      <img src="/assets/images/RetailerBoost-Logo-Blue-White.png" alt="RetailerBoost" class="logo">
+    </a>
+  </header>
+  
+  <main class="main">
+    <h1 class="heading">Book a Call</h1>
+    <div id="calendly-embed"></div>
+  </main>
+  
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="/terms.html">Terms</a>
+      <a href="/privacy.html">Privacy</a>
+      <a href="/cookies.html">Cookies</a>
+    </div>
+    <p>© 2025 RetailerBoost. All rights reserved.</p>
+  </footer>
+  
+  <!-- Calendly initialization with UTM passthrough -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Get UTM params from URL
+      var urlParams = new URLSearchParams(window.location.search);
+      
+      // Default values
+      var defaults = {
+        utm_source: 'retailerboostplatform.com',
+        utm_medium: 'outbound',
+        utm_campaign: 'email'
+      };
+      
+      // Capture UTMs or use defaults
+      var utmSource = urlParams.get('utm_source') || defaults.utm_source;
+      var utmMedium = urlParams.get('utm_medium') || defaults.utm_medium;
+      var utmCampaign = urlParams.get('utm_campaign') || defaults.utm_campaign;
+      var utmContent = urlParams.get('utm_content') || 'book-a-call-page';
+      var utmTerm = urlParams.get('utm_term') || undefined;
+      
+      // Initialize Calendly with UTM passthrough
+      Calendly.initInlineWidget({
+        url: 'https://calendly.com/sturrock/intro?hide_event_type_details=1&hide_gdpr_banner=1&background_color=0b1314&text_color=ffffff&primary_color=247CFF',
+        parentElement: document.getElementById('calendly-embed'),
+        utm: {
+          utmSource: utmSource,
+          utmMedium: utmMedium,
+          utmCampaign: utmCampaign,
+          utmContent: utmContent,
+          utmTerm: utmTerm
+        }
+      });
+    });
+  </script>
+  
+  <!-- RetailerBoost Signup Attribution Tracking -->
+  <!-- NOT FOR AD TRACKING - This tracks signup attribution only -->
+  <script>
+    (function() {
+      'use strict';
+      
+      var params = new URLSearchParams(window.location.search);
+      var utmParams = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_term', 'utm_content'];
+      var hasUTM = utmParams.some(function(p) { return params.has(p); });
+      var referrer = document.referrer || '';
+      
+      // Only track if we have UTMs or a meaningful referrer
+      if (!hasUTM && !referrer) {
+        return;
+      }
+      
+      // Build the tracking URL
+      var trackUrl = 'https://app.retailerboost.com/signup-attribution?';
+      var trackParams = [];
+      
+      // Add UTM params
+      utmParams.forEach(function(p) {
+        var value = params.get(p);
+        if (value) {
+          trackParams.push(p + '=' + encodeURIComponent(value));
+        }
+      });
+      
+      // Add referrer
+      if (referrer) {
+        trackParams.push('referrer=' + encodeURIComponent(referrer));
+      }
+      
+      // Add the domain where this was captured
+      trackParams.push('captured_on=' + encodeURIComponent(window.location.hostname));
+      
+      trackUrl += trackParams.join('&');
+      
+      // Load the tracking pixel in a hidden iframe
+      var iframe = document.createElement('iframe');
+      iframe.src = trackUrl;
+      iframe.style.cssText = 'position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;border:none;';
+      iframe.setAttribute('aria-hidden', 'true');
+      iframe.setAttribute('tabindex', '-1');
+      
+      if (document.body) {
+        document.body.appendChild(iframe);
+      } else {
+        document.addEventListener('DOMContentLoaded', function() {
+          document.body.appendChild(iframe);
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
