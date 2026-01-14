@@ -139,10 +139,11 @@
       var utmContent = urlParams.get('utm_content') || 'book-a-call-page';
       var utmTerm = urlParams.get('utm_term') || undefined;
       
-      // Initialize Calendly with UTM passthrough
+      // Initialize Calendly with UTM passthrough and auto-resize
       Calendly.initInlineWidget({
         url: 'https://calendly.com/sturrock/intro?hide_event_type_details=1&hide_gdpr_banner=1&background_color=0b1314&text_color=ffffff&primary_color=247CFF',
         parentElement: document.getElementById('calendly-embed'),
+        resize: true,
         utm: {
           utmSource: utmSource,
           utmMedium: utmMedium,

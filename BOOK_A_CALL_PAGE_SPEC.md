@@ -140,10 +140,11 @@ const utmCampaign = urlParams.get('utm_campaign') || defaults.utm_campaign;
 const utmContent = urlParams.get('utm_content') || 'book-a-call-page';
 const utmTerm = urlParams.get('utm_term') || undefined;
 
-// Initialize Calendly inline widget with UTM passthrough
+// Initialize Calendly inline widget with UTM passthrough and auto-resize
 Calendly.initInlineWidget({
   url: 'https://calendly.com/sturrock/intro?hide_event_type_details=1&hide_gdpr_banner=1&background_color=0b1314&text_color=ffffff&primary_color=247CFF',
   parentElement: document.getElementById('calendly-embed'),
+  resize: true,  // Auto-resize height based on content
   utm: {
     utmSource: utmSource,
     utmMedium: utmMedium,
@@ -152,6 +153,8 @@ Calendly.initInlineWidget({
     utmTerm: utmTerm
   }
 });
+
+// Note: Only use ONE auto-resizing embed per page to prevent layout issues
 ```
 
 ### Required Calendly Assets
