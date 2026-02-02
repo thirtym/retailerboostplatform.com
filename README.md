@@ -9,7 +9,7 @@ The landing page automatically captures and passes through UTM parameters to all
 ### How It Works
 
 1. When a visitor arrives at the page with UTM parameters (e.g., from an email campaign), the JavaScript captures them
-2. All "Get Started" links pointing to `app.retailerboost.com/signup` are automatically updated with those UTM params
+2. All "Get Started" links pointing to `dashboard.retailerboost.com/signup` are automatically updated with those UTM params
 3. All "Book a Call" buttons pass UTM params to Calendly via the `utm` object in `Calendly.initPopupWidget()`
 4. If no UTM params are present in the URL, defaults are used
 
@@ -38,7 +38,7 @@ https://retailerboostplatform.com/?utm_source=apollo&utm_medium=email&utm_campai
 
 **Resulting Signup URL:**
 ```
-https://app.retailerboost.com/signup?utm_source=apollo&utm_medium=email&utm_campaign=q1-outreach&utm_content=variant-a_hero
+https://dashboard.retailerboost.com/signup?utm_source=apollo&utm_medium=email&utm_campaign=q1-outreach&utm_content=variant-a_hero
 ```
 
 ### Page Location Identifiers

@@ -175,7 +175,7 @@ Even though this is a booking page, we must also fire the signup attribution pix
 
 ### Why?
 
-- UTM data is stored in `app.retailerboost.com`'s localStorage immediately
+- UTM data is stored in `dashboard.retailerboost.com`'s localStorage immediately
 - If visitor signs up later (days/weeks), attribution is already captured
 - Full funnel tracking: campaigns → calls AND campaigns → signups
 - Both CTAs are attributed to the same original campaign
@@ -185,7 +185,7 @@ Even though this is a booking page, we must also fire the signup attribution pix
 On page load (when UTMs or referrer exist), create a hidden iframe to:
 
 ```
-https://app.retailerboost.com/signup-attribution?utm_source=...&utm_medium=...&...
+https://dashboard.retailerboost.com/signup-attribution?utm_source=...&utm_medium=...&...
 ```
 
 ### Parameters to Send
@@ -224,7 +224,7 @@ https://app.retailerboost.com/signup-attribution?utm_source=...&utm_medium=...&.
   if (referrer) trackParams.set('referrer', referrer);
   trackParams.set('captured_on', window.location.hostname);
   
-  const trackUrl = `https://app.retailerboost.com/signup-attribution?${trackParams.toString()}`;
+  const trackUrl = `https://dashboard.retailerboost.com/signup-attribution?${trackParams.toString()}`;
   
   // Create hidden iframe
   const iframe = document.createElement('iframe');
@@ -276,7 +276,7 @@ https://retailerboostplatform.com/book-a-call?utm_source=apollo&utm_medium=email
 ### What Happens
 
 1. Visitor lands on `/book-a-call?utm_source=apollo&...`
-2. Attribution iframe fires → stores UTMs in `app.retailerboost.com` localStorage
+2. Attribution iframe fires → stores UTMs in `dashboard.retailerboost.com` localStorage
 3. Calendly widget initializes with same UTMs
 4. Visitor books call → Calendly has full attribution
 5. OR visitor leaves, signs up later → app already has their attribution

@@ -72,7 +72,7 @@ This is a static HTML landing page for RetailerBoost outbound marketing campaign
 
 All "Get Started" buttons should link to:
 ```
-https://app.retailerboost.com/signup?utm_source=...&utm_medium=...&utm_campaign=...&utm_content=...
+https://dashboard.retailerboost.com/signup?utm_source=...&utm_medium=...&utm_campaign=...&utm_content=...
 ```
 
 UTM parameters are dynamically updated by the UTM passthrough script. Default values:

@@ -8,16 +8,16 @@ This document specifies how to implement cross-domain signup attribution trackin
 
 ## Purpose
 
-When a user clicks a link in an email (on a sending domain like `getretailerboost.com`) and later signs up on `app.retailerboost.com`, we need to attribute that signup to the original email campaign - even if they visit days later via a Google search.
+When a user clicks a link in an email (on a sending domain like `getretailerboost.com`) and later signs up on `dashboard.retailerboost.com`, we need to attribute that signup to the original email campaign - even if they visit days later via a Google search.
 
 ## How It Works
 
 ```
 1. User clicks email link → lands on sending domain (e.g., getretailerboost.com)
 2. Sending domain captures UTM params + document.referrer
-3. Sending domain loads hidden iframe: app.retailerboost.com/signup-attribution?...
-4. The iframe stores this data in app.retailerboost.com's localStorage
-5. Days later, user visits app.retailerboost.com/signup directly
+3. Sending domain loads hidden iframe: dashboard.retailerboost.com/signup-attribution?...
+4. The iframe stores this data in dashboard.retailerboost.com's localStorage
+5. Days later, user visits dashboard.retailerboost.com/signup directly
 6. Signup page reads the stored attribution data
 7. User is attributed to the original email campaign
 ```
@@ -47,7 +47,7 @@ Add this JavaScript snippet to **every page** on your domain. Place it just befo
   }
   
   // Build the tracking URL
-  var trackUrl = 'https://app.retailerboost.com/signup-attribution?';
+  var trackUrl = 'https://dashboard.retailerboost.com/signup-attribution?';
   var trackParams = [];
   
   // Add UTM params
@@ -101,7 +101,7 @@ import { useEffect } from 'react';
  * Cross-domain signup attribution tracking
  * NOT FOR AD TRACKING - This tracks signup attribution only
  * 
- * Loads a hidden iframe to sync UTM params to app.retailerboost.com
+ * Loads a hidden iframe to sync UTM params to dashboard.retailerboost.com
  */
 export function SignupAttributionTracker() {
   useEffect(() => {
@@ -124,7 +124,7 @@ export function SignupAttributionTracker() {
     if (referrer) trackParams.set('referrer', referrer);
     trackParams.set('captured_on', window.location.hostname);
     
-    const trackUrl = `https://app.retailerboost.com/signup-attribution?${trackParams.toString()}`;
+    const trackUrl = `https://dashboard.retailerboost.com/signup-attribution?${trackParams.toString()}`;
     
     // Create hidden iframe
     const iframe = document.createElement('iframe');
@@ -166,11 +166,11 @@ export default function Layout({ children }) {
 
 ### 3. Continue Passing UTMs in Links
 
-In addition to the iframe pixel, **always pass UTM params** when linking to `app.retailerboost.com`:
+In addition to the iframe pixel, **always pass UTM params** when linking to `dashboard.retailerboost.com`:
 
 ```html
 <!-- Good: Always include UTMs in links to app -->
-<a href="https://app.retailerboost.com/signup?utm_source=newsletter&utm_medium=email&utm_campaign=jan_2025_promo">
+<a href="https://dashboard.retailerboost.com/signup?utm_source=newsletter&utm_medium=email&utm_campaign=jan_2025_promo">
   Get Started
 </a>
 ```
@@ -317,16 +317,16 @@ Only these domains are allowed to embed the signup attribution pixel:
 
 1. Visit your domain with UTM params: `https://yourdomain.com/?utm_source=test&utm_medium=test&utm_campaign=test_campaign`
 2. Open browser DevTools → Network tab
-3. Verify an iframe request to `app.retailerboost.com/signup-attribution?...` is made
+3. Verify an iframe request to `dashboard.retailerboost.com/signup-attribution?...` is made
 4. Open DevTools → Application → localStorage
-5. You should NOT see the data here (it's stored on app.retailerboost.com, not your domain)
-6. Visit `app.retailerboost.com/signup` and check localStorage there for `retailerboost_signup_attribution`
+5. You should NOT see the data here (it's stored on dashboard.retailerboost.com, not your domain)
+6. Visit `dashboard.retailerboost.com/signup` and check localStorage there for `retailerboost_signup_attribution`
 
 ## FAQ
 
 ### Why use an iframe instead of a direct API call?
 
-The iframe allows us to store data in `app.retailerboost.com`'s localStorage from any domain. A direct API call would require cookies with `SameSite=None` and other cross-origin complications.
+The iframe allows us to store data in `dashboard.retailerboost.com`'s localStorage from any domain. A direct API call would require cookies with `SameSite=None` and other cross-origin complications.
 
 ### What if the iframe is blocked?
 
